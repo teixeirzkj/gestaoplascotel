@@ -74,3 +74,16 @@ Em **Settings > Domains**, adicione o domínio e crie o registro DNS indicado (C
 - Cada push na branch principal gera um deploy de produção. As outras branches geram Previews.
 - **Mudou o banco?** Aplique a migração **antes** de publicar o código que depende dela (`npm run db:migrate` na sua máquina), depois regenere os tipos (`npm run db:types`) e faça o commit.
 - Para voltar uma versão: em **Deployments**, escolha um deploy anterior e use **Promote to Production**. Migrações não são desfeitas automaticamente. Escreva migrações compatíveis com a versão anterior do código.
+
+## Configuração atual (novembro/2026)
+
+| Ambiente | Supabase | Região | Uso |
+|---|---|---|---|
+| **Produção** | projeto `plascotel-sp` | `sa-east-1` (São Paulo) | dados reais, sem dados fictícios |
+| **Desenvolvimento / Preview** | projeto de desenvolvimento | `us-west-2` | dados de demonstração e testes E2E |
+
+- Vercel: projeto `gestaoplascotel` (time `teixeira6`), conectado ao GitHub `teixeirzkj/gestaoplascotel`. Cada push em `main` publica em produção; branches e PRs geram previews que usam o banco de **desenvolvimento**.
+- Funções na região `gru1` (São Paulo), definida em `vercel.json`, ao lado do banco de produção.
+- Node.js 24 LTS (`engines` no `package.json`).
+- Supabase Auth (produção): cadastro público **desativado** (somente o proprietário cria usuários), senha mínima de 8 caracteres, Site URL `https://gestaoplascotel.vercel.app`.
+- Migrações em produção: `DB_TARGET=prod node scripts/db.mjs migrate` e a suíte `DB_TARGET=prod node scripts/db.mjs file supabase/tests/financial_rules.sql` (requer `PROD_SUPABASE_PROJECT_REF` e `PROD_SUPABASE_ACCESS_TOKEN` no `.env.local`). Aplique sempre primeiro no desenvolvimento.
