@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEnterInitial } from "@/lib/use-hydrated";
 import { ChevronDown, ChevronRight, Home, MapPinned, Navigation } from "lucide-react";
 import { StatusBadge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -88,6 +89,7 @@ export function ToVisitList({ items }: { items: CityToVisit[] }) {
 const INITIAL_CUSTOMERS = 12;
 
 export function CityCustomersList({ items }: { items: CityCustomer[] }) {
+  const enterInitial = useEnterInitial();
   const [showAll, setShowAll] = useState(false);
   const visible = showAll ? items : items.slice(0, INITIAL_CUSTOMERS);
   return (
@@ -95,7 +97,7 @@ export function CityCustomersList({ items }: { items: CityCustomer[] }) {
       <ul className="divide-y divide-line">
         <AnimatePresence initial={false}>
           {visible.map((c) => (
-            <motion.li key={c.id} variants={listItem} initial="hidden" animate="show" exit="exit">
+            <motion.li key={c.id} variants={listItem} initial={enterInitial} animate="show" exit="exit">
               <Link
                 href={`/clientes/${c.id}`}
                 className="flex min-h-14 items-center gap-3 px-4 py-2.5 transition-colors hover:bg-white/[0.025] sm:px-5"

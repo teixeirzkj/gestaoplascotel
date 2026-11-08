@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useEnterInitial } from "@/lib/use-hydrated";
 import {
   Ban,
   BadgeCheck,
@@ -89,8 +90,9 @@ export function ActivityRow({ item, showDate }: { item: ActivityView; showDate?:
 
 /** Lista simples (sem agrupamento), usada no resumo da visão geral. */
 export function ActivityMiniList({ items }: { items: ActivityView[] }) {
+  const enterInitial = useEnterInitial();
   return (
-    <motion.ol variants={stagger(0.02, 0.04)} initial="hidden" animate="show" className="relative">
+    <motion.ol variants={stagger(0.02, 0.04)} initial={enterInitial} animate="show" className="relative">
       <span className="absolute bottom-4 left-4 top-2 w-px bg-line" aria-hidden />
       {items.map((a) => (
         <motion.li key={a.id} variants={listItem}>
@@ -103,6 +105,7 @@ export function ActivityMiniList({ items }: { items: ActivityView[] }) {
 
 /** Linha do tempo completa, agrupada por dia, com "carregar mais". */
 export function ActivityTimeline({ customerId, initial }: { customerId: string; initial: ActivityView[] }) {
+  const enterInitial = useEnterInitial();
   const [items, setItems] = useState(initial);
   const [hasMore, setHasMore] = useState(initial.length === ACTIVITY_PAGE_SIZE);
   const [loading, setLoading] = useState(false);
@@ -146,7 +149,7 @@ export function ActivityTimeline({ customerId, initial }: { customerId: string; 
       {groups.map((g) => (
         <section key={g.day} aria-label={dayLabel(g.day)}>
           <h3 className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-fg-muted first-letter:uppercase">{dayLabel(g.day)}</h3>
-          <motion.ol variants={stagger(0.02, 0.035)} initial="hidden" animate="show" className="relative">
+          <motion.ol variants={stagger(0.02, 0.035)} initial={enterInitial} animate="show" className="relative">
             <span className="absolute bottom-4 left-4 top-2 w-px bg-line" aria-hidden />
               {g.items.map((a) => (
                 <motion.li key={a.id} variants={listItem}>

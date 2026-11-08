@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEnterInitial } from "@/lib/use-hydrated";
 import { CalendarClock, MapPin, StickyNote } from "lucide-react";
 import { Badge, StatusBadge } from "@/components/ui/badge";
 import { Avatar, ContactButtons, Table, Td, Th } from "@/components/ui/misc";
@@ -16,9 +17,10 @@ import { InstallmentActions } from "./installment-actions";
 
 /** Lista de parcelas: cards no celular, tabela a partir de md. Itens entram/saem animados. */
 export function CollectionsList({ rows }: { rows: InstallmentView[] }) {
+  const enterInitial = useEnterInitial();
   return (
     <>
-      <motion.ul variants={stagger(0.02, 0.04)} initial="hidden" animate="show" className="space-y-3 md:hidden">
+      <motion.ul variants={stagger(0.02, 0.04)} initial={enterInitial} animate="show" className="space-y-3 md:hidden">
         <AnimatePresence initial={false} mode="popLayout">
           {rows.map((i) => (
             <motion.li key={i.id} variants={listItem} exit="exit" layout="position">
@@ -42,7 +44,7 @@ export function CollectionsList({ rows }: { rows: InstallmentView[] }) {
               </Th>
             </tr>
           </thead>
-          <motion.tbody variants={stagger(0.02, 0.03)} initial="hidden" animate="show">
+          <motion.tbody variants={stagger(0.02, 0.03)} initial={enterInitial} animate="show">
             <AnimatePresence initial={false}>
               {rows.map((i) => (
                 <InstallmentRow key={i.id} i={i} />

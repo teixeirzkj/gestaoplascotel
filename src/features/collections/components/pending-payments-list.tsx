@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEnterInitial } from "@/lib/use-hydrated";
 import { StickyNote, UserRound } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, Table, Td, Th } from "@/components/ui/misc";
@@ -14,9 +15,10 @@ import { PaymentStatusActions } from "./payment-status-actions";
 
 /** Pagamentos aguardando confirmação: cards no celular, tabela a partir de md. */
 export function PendingPaymentsList({ rows }: { rows: PaymentView[] }) {
+  const enterInitial = useEnterInitial();
   return (
     <>
-      <motion.ul variants={stagger(0.02, 0.04)} initial="hidden" animate="show" className="space-y-3 md:hidden">
+      <motion.ul variants={stagger(0.02, 0.04)} initial={enterInitial} animate="show" className="space-y-3 md:hidden">
         <AnimatePresence initial={false} mode="popLayout">
           {rows.map((p) => (
             <motion.li key={p.id} variants={listItem} exit="exit" layout="position">
@@ -40,7 +42,7 @@ export function PendingPaymentsList({ rows }: { rows: PaymentView[] }) {
               </Th>
             </tr>
           </thead>
-          <motion.tbody variants={stagger(0.02, 0.03)} initial="hidden" animate="show">
+          <motion.tbody variants={stagger(0.02, 0.03)} initial={enterInitial} animate="show">
             <AnimatePresence initial={false}>
               {rows.map((p) => (
                 <motion.tr key={p.id} variants={listItem} exit="exit" className="transition-colors hover:bg-white/[0.025]">

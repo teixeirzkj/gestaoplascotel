@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEnterInitial } from "@/lib/use-hydrated";
 import { ChevronRight, ShieldCheck, TriangleAlert } from "lucide-react";
 import { Card, CardBody, CardHeader } from "@/components/ui/card";
 import { ContactButtons } from "@/components/ui/misc";
@@ -33,6 +34,7 @@ type CustomerGroup = {
 };
 
 export function DelinquencyPanel({ buckets, installments, truncated }: { buckets: AgingRow[]; installments: OverdueRow[]; truncated: boolean }) {
+  const enterInitial = useEnterInitial();
   const totalAmount = buckets.reduce((a, b) => a + b.amount, 0);
   const worst = buckets.reduce<AgingRow | null>((best, b) => (b.amount > 0 && (!best || b.amount > best.amount) ? b : best), null);
   const [selected, setSelected] = useState<number | null>(worst?.sort_order ?? null);
@@ -84,7 +86,7 @@ export function DelinquencyPanel({ buckets, installments, truncated }: { buckets
           <>
             <motion.div
               variants={stagger(0.02, 0.04)}
-              initial="hidden"
+              initial={enterInitial}
               animate="show"
               className="grid grid-cols-2 gap-2.5 lg:grid-cols-4"
               role="group"

@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { stagger, listItem, fadeUp } from "@/lib/motion";
+import { useEnterInitial } from "@/lib/use-hydrated";
 
 /** Container com entrada escalonada. Filhos devem ser <MotionItem>. */
 export function MotionList({
@@ -16,8 +17,9 @@ export function MotionList({
   delay?: number;
 }) {
   const Comp = as === "ul" ? motion.ul : motion.div;
+  const initial = useEnterInitial();
   return (
-    <Comp variants={stagger(delay, 0.04)} initial="hidden" animate="show" className={className}>
+    <Comp variants={stagger(delay, 0.04)} initial={initial} animate="show" className={className}>
       {children}
     </Comp>
   );
@@ -34,8 +36,9 @@ export function MotionItem({ children, className, as = "div" }: { children: Reac
 
 /** Bloco que entra suavemente (seções da página) */
 export function FadeIn({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const initial = useEnterInitial();
   return (
-    <motion.div variants={fadeUp} initial="hidden" animate="show" transition={{ delay }} className={className}>
+    <motion.div variants={fadeUp} initial={initial} animate="show" transition={{ delay }} className={className}>
       {children}
     </motion.div>
   );
