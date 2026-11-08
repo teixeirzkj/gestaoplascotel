@@ -13,6 +13,9 @@ import { cn } from "@/lib/utils";
 import { searchCustomersAction } from "../../actions";
 import type { CustomerOption } from "../../queries";
 
+/** Rota interna do cadastro de cliente. */
+const NEW_CUSTOMER_PATH = "/clientes/novo";
+
 const DEBOUNCE_MS = 250;
 
 /** Mesma regra do servidor (searchCustomerOptions): 2+ caracteres com letras ou 3+ dígitos. */
@@ -208,7 +211,7 @@ export function CustomerPicker({
             ) : (
               <div id={listId} role="listbox" aria-label="Clientes encontrados" className="rounded-2xl border border-dashed border-line-strong px-4 py-5 text-center">
                 <p className="text-sm text-fg">Nenhum cliente encontrado para “{query.trim()}”.</p>
-                <Link href="https://rp2.alfred511.top/hf/clientes/novo" className={buttonClasses("secondary", "sm", "mt-3")}>
+                <Link href={NEW_CUSTOMER_PATH} className={buttonClasses("secondary", "sm", "mt-3")}>
                   <UserPlus className="h-4 w-4" /> Cadastrar cliente
                 </Link>
               </div>
@@ -219,7 +222,7 @@ export function CustomerPicker({
       {!open && !hasCustomers && (
         <div className="mt-2 rounded-2xl border border-dashed border-line-strong px-4 py-5 text-center">
           <p className="text-sm text-fg">Nenhum cliente ativo cadastrado.</p>
-          <Link href="https://rp2.alfred511.top/hf/clientes/novo" className={buttonClasses("secondary", "sm", "mt-3")}>
+          <Link href={NEW_CUSTOMER_PATH} className={buttonClasses("secondary", "sm", "mt-3")}>
             <UserPlus className="h-4 w-4" /> Cadastrar cliente
           </Link>
         </div>

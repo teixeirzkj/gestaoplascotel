@@ -13,7 +13,9 @@
     "db:types": "node --env-file=.env.local -e \"const out = require('child_process').execSync('npx -y supabase gen types typescript --schema public --project-id ' + process.env.SUPABASE_PROJECT_REF, { encoding: 'utf8', maxBuffer: 50e6 }); require('fs').writeFileSync('src/types/supabase.ts', out); console.log('src/types/supabase.ts atualizado')\"",
     "seed:demo": "node scripts/seed-demo.mjs",
     "reset:demo": "node scripts/reset-demo.mjs",
-    "test:e2e": "node tests/e2e/flows.spec.mjs"
+    "test:e2e": "node tests/e2e/flows.spec.mjs",
+    "prebuild": "node scripts/check-urls.mjs",
+    "check:urls": "node scripts/check-urls.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.3",

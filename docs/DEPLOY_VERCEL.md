@@ -43,13 +43,13 @@ Com regiões diferentes, cada página paga a viagem de ida e volta entre contine
 
 ## 4. Configurar o Auth do Supabase para o domínio
 
-Depois do primeiro deploy, anote a URL (por exemplo `https://plascotel.vercel.app`, ou o seu domínio próprio).
+Depois do primeiro deploy, anote a URL (por exemplo `https://gestaoplascotel.vercel.app`, ou o seu domínio próprio).
 
 No Supabase, em **Authentication > URL Configuration**:
 
-- **Site URL**: `https://plascotel.vercel.app` (ou o domínio próprio).
+- **Site URL**: `https://gestaoplascotel.vercel.app` (ou o domínio próprio).
 - **Redirect URLs**: adicione
-  - `https://plascotel.vercel.app/**`
+  - `https://gestaoplascotel.vercel.app/**`
   - o domínio próprio, se houver: `https://app.suaempresa.com.br/**`
   - para Previews (opcional): `https://*-<sua-equipe>.vercel.app/**`
   - para desenvolvimento: `http://localhost:3000/**`
