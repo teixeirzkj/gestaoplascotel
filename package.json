@@ -15,7 +15,9 @@
     "reset:demo": "node scripts/reset-demo.mjs",
     "test:e2e": "node tests/e2e/flows.spec.mjs",
     "prebuild": "node scripts/check-urls.mjs",
-    "check:urls": "node scripts/check-urls.mjs"
+    "check:urls": "node scripts/check-urls.mjs",
+    "test:security": "node tests/security/anon-probe.mjs prod && node tests/security/employee-probe.mjs && node tests/security/web-attacks.mjs",
+    "test:security:prod": "node tests/security/anon-probe.mjs prod"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.3",

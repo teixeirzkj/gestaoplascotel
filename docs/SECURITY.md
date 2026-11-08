@@ -115,3 +115,25 @@ Se uma chave foi commitada, considere-a comprometida **mesmo depois de apagar o 
 - [ ] Site URL e Redirect URLs restritas aos domínios oficiais.
 - [ ] Backups configurados e testados ([BACKUP.md](BACKUP.md)).
 - [ ] Senha forte para cada usuário, uma conta por pessoa (nada de login compartilhado: a auditoria depende disso).
+
+## Testes de invasão (novembro/2026)
+
+Suítes automatizadas em `tests/security/` (rodar com `npm run test:security`):
+
+| Suíte | Ambiente | O que o atacante tenta | Resultado |
+|---|---|---|---|
+| `anon-probe.mjs` | produção (somente leitura/tentativas negadas) | Sem login, só com a chave pública: ler todas as tabelas e views, gravar, chamar RPCs, listar/baixar/enviar comprovantes, criar conta, acessar páginas e exportações, redirecionamento aberto, segredos no JavaScript, cabeçalhos | 72/72 defesas OK |
+| `employee-probe.mjs` | desenvolvimento | Com login de funcionário, chamando a API direto: virar proprietário, desativar o dono, criar/editar/excluir cadastros, dar baixa em parcela, alterar/apagar pagamentos, lançar no caixa, apagar/forjar auditoria, RPCs de proprietário, funções internas, falsificar autoria, comprovante sem arquivo, upload de HTML, injeção SQL | 42/42 defesas OK |
+| `web-attacks.mjs` | desenvolvimento | XSS armazenado em cadastro/observações/histórico/busca, injeção em filtros de busca, CSRF em Server Actions, replay sem sessão, força bruta no login | 15/15 defesas OK |
+| `supabase/tests/financial_rules.sql` | dev e produção (transação desfeita) | Regras financeiras e RLS no banco | 58/58 OK |
+
+### Proteções adicionadas a partir dos testes
+- **Força bruta:** 5 senhas erradas por e-mail ou 20 por IP em 15 minutos bloqueiam o login por até 15 minutos (`login_throttle_check`/`login_throttle_record`, só `service_role`; e-mail e IP guardados como hash SHA-256). Mensagem genérica de erro (não revela se o e-mail existe).
+- **Senhas:** mínimo de 8 caracteres com letras e números (Supabase Auth e página Meu perfil); cadastro público desativado; rotação de refresh token.
+- **Funções internas e de gatilho** não executáveis via `/rest/v1/rpc`; `search_path` fixo em todas as funções.
+- **Redirecionamento:** `?next=` aceita só caminhos internos (recusa `//`, `/\`, URLs absolutas e controles/barras codificados).
+- **Integridade do código:** `scripts/check-urls.mjs` roda antes de todo build e falha se o código citar domínios fora da lista aprovada (um link interno chegou a ser gravado apontando para um domínio externo desconhecido; foi corrigido).
+
+### Pendências que dependem de plano pago
+- Proteção contra senhas vazadas (HaveIBeenPwned) e PITR: Supabase Pro.
+- Uso comercial na Vercel: plano Pro.

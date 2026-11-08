@@ -479,6 +479,30 @@ export type Database = {
           },
         ]
       }
+      login_attempts: {
+        Row: {
+          created_at: string
+          email_hash: string
+          id: number
+          ip_hash: string
+          success: boolean
+        }
+        Insert: {
+          created_at?: string
+          email_hash: string
+          id?: never
+          ip_hash: string
+          success: boolean
+        }
+        Update: {
+          created_at?: string
+          email_hash?: string
+          id?: never
+          ip_hash?: string
+          success?: boolean
+        }
+        Relationships: []
+      }
       notification_reads: {
         Row: {
           notification_key: string
@@ -1746,6 +1770,7 @@ export type Database = {
         Args: { p_payment: string }
         Returns: undefined
       }
+      _login_hash: { Args: { p: string }; Returns: string }
       _refresh_sale_status: { Args: { p_sale: string }; Returns: undefined }
       app_today: { Args: never; Returns: string }
       assert_active: { Args: never; Returns: undefined }
@@ -1879,6 +1904,14 @@ export type Database = {
           p_old?: Json
           p_summary: string
         }
+        Returns: undefined
+      }
+      login_throttle_check: {
+        Args: { p_email: string; p_ip: string }
+        Returns: number
+      }
+      login_throttle_record: {
+        Args: { p_email: string; p_ip: string; p_success: boolean }
         Returns: undefined
       }
       method_label: {

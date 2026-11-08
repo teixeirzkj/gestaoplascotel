@@ -1,5 +1,3 @@
-"use client";
-
 import { forwardRef } from "react";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";

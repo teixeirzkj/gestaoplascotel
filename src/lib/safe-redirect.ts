@@ -9,6 +9,8 @@ const PROBE_ORIGIN = "http://local.invalid";
  */
 export function safeInternalPath(raw: unknown): string | null {
   if (typeof raw !== "string" || raw.length > 2048 || !INTERNAL_PATH.test(raw)) return null;
+  // Recusa controles e barras codificados (%00–%1F, %7F, %2F, %5C), usados para burlar validações de redirect
+  if (/%(?:[01][0-9a-f]|7f|2f|5c)/i.test(raw)) return null;
   try {
     const u = new URL(raw, PROBE_ORIGIN);
     if (u.origin !== PROBE_ORIGIN) return null;
