@@ -101,6 +101,15 @@ const delObj = await fetch(`${SB}/storage/v1/object/receipts`, { method: "DELETE
 const delBody = await delObj.text();
 check("apagar comprovante", !delObj.ok || delBody.trim() === "[]", `${delObj.status} ${delBody.slice(0, 60)}`);
 
+
+// --- Mensagens de cobrança
+r = await rest("customer_messages", { method: "POST", body: JSON.stringify({ group_id: crypto.randomUUID(), customer_id: cust?.id, kind: "due_today", ref_date: "2026-01-01", status: "sent", installment_id: inst?.id }) }); d = await denied(r); check("gravar registro de mensagem direto (sem RPC)", d.ok, d.detail);
+if (inst && cust) {
+  const other = (await rows(await rest(`customers?select=id&id=neq.${inst.customer_id}&limit=1`)))[0];
+  r = await fetch(`${SB}/rest/v1/rpc/record_customer_message`, { method: "POST", headers: H, body: JSON.stringify({ p_customer_id: other.id, p_kind: "due_today", p_status: "sent", p_body: "x", p_amount: 1, p_installments: [{ id: inst.id, ref_date: "2026-01-01" }], p_promise_id: null, p_payment_id: null, p_ref_date: null, p_skip_reason: null }) });
+  const b = await r.text(); check("registrar mensagem com parcela de outro cliente", !r.ok && /não pertence/.test(b), `${r.status} ${b.slice(0, 80)}`);
+}
+
 // --- Injeção SQL / filtros
 for (const payload of ["'; drop table customers; --", "a%' or '1'='1", "x),(select pg_sleep(5))--", "*"]) {
   const t0 = Date.now();

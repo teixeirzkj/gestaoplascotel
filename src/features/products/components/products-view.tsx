@@ -71,7 +71,7 @@ export function ProductsView({ rows, total, page, pageSize, categories, editing,
         }
       />
 
-      <div className="mb-4 grid gap-2 sm:grid-cols-[minmax(0,1fr)_200px_160px]">
+      <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_200px_160px]">
         <SearchInput placeholder="Buscar produto pelo nome" />
         <div className="grid grid-cols-2 gap-2 sm:contents">
           <FilterSelect param="categoria" label="Categoria" placeholder="Todas as categorias" options={categoryOptions} />

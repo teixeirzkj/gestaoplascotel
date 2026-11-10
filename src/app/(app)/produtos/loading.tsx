@@ -10,7 +10,7 @@ export default function Loading() {
         </div>
         <Skeleton className="hidden h-11 w-36 rounded-xl sm:block" />
       </div>
-      <div className="grid gap-2 sm:grid-cols-[1fr_200px_160px]">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_200px_160px]">
         <Skeleton className="h-11 rounded-xl" />
         <div className="grid grid-cols-2 gap-2 sm:contents">
           <Skeleton className="h-11 rounded-xl" />

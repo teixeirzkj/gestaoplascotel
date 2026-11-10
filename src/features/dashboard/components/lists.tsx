@@ -79,7 +79,7 @@ export async function CustomersAttention() {
       {items.length === 0 ? (
         <EmptyState compact title="Nenhum cliente com pendência" description="Todos os clientes estão em dia." />
       ) : (
-        <ul className="-mx-2 grid gap-0.5 sm:grid-cols-2 sm:gap-x-2 lg:grid-cols-1 xl:grid-cols-2">
+        <ul className="-mx-2 grid grid-cols-1 gap-0.5 sm:grid-cols-2 sm:gap-x-2 lg:grid-cols-1 xl:grid-cols-2">
           {items.map((c) => (
             <li key={c.id} className="min-w-0">
               <Link href={`/clientes/${c.id}`} className={rowCls}>

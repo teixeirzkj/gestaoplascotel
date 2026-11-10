@@ -107,7 +107,7 @@ export function ProductFormModal({ open, onClose, product, categories, readOnly 
         <Field label="Nome" required error={errors.name}>
           <Input value={name} onChange={(e) => setName(e.target.value)} maxLength={120} placeholder="Ex.: Jogo de panelas 5 peças" autoComplete="off" />
         </Field>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label="Categoria" error={errors.category} hint={categories.length ? "Escolha uma existente ou digite uma nova." : undefined}>
             <Input
               value={category}

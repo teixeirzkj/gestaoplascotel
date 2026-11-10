@@ -104,7 +104,7 @@ export default async function CityDetailPage({ params }: { params: Promise<{ id:
         </Card>
       )}
 
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
         <div className="grid min-w-0 gap-5">
           <Card>
             <CardHeader

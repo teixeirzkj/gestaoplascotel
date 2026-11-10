@@ -84,7 +84,7 @@ export function PasswordForm() {
           <Field label="Senha atual" required error={errors.currentPassword}>
             <Input type="password" autoComplete="current-password" value={values.currentPassword} onChange={set("currentPassword")} />
           </Field>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Nova senha" required error={errors.newPassword}>
               <Input type="password" autoComplete="new-password" value={values.newPassword} onChange={set("newPassword")} />
             </Field>

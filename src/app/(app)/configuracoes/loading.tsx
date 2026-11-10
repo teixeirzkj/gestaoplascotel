@@ -12,12 +12,12 @@ export default function Loading() {
           <Skeleton key={w} className={`h-5 max-w-[24%] shrink-0 ${w}`} />
         ))}
       </div>
-      <div className="grid gap-4 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         {[4, 3].map((fields, c) => (
           <div key={c} className="rounded-2xl border border-line bg-card p-4 sm:p-5">
             <Skeleton className="mb-1.5 h-4 w-32" />
             <Skeleton className="mb-5 h-3 w-60 max-w-full" />
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {Array.from({ length: fields }).map((_, i) => (
                 <div key={i} className="space-y-1.5">
                   <Skeleton className="h-3 w-24" />

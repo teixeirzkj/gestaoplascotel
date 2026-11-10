@@ -44,7 +44,7 @@ export default async function CaixaPage({ searchParams }: { searchParams: Promis
 
       <DateNav date={date} today={today} />
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
         <div className="min-w-0 space-y-5">
           <DaySummary summary={summary} isToday={isToday} />
           <FadeIn delay={0.05}>

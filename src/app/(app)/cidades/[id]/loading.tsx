@@ -19,7 +19,7 @@ export default function Loading() {
           <Skeleton key={i} className="h-[92px] rounded-2xl" />
         ))}
       </div>
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_380px]">
         <div className="grid gap-5">
           <div className="space-y-3 rounded-2xl border border-line bg-card p-4 sm:p-5">
             <Skeleton className="h-5 w-44" />

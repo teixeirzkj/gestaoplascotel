@@ -268,6 +268,124 @@ export type Database = {
           },
         ]
       }
+      customer_messages: {
+        Row: {
+          amount: number | null
+          body: string | null
+          channel: string
+          created_at: string
+          created_by: string | null
+          customer_id: string
+          group_id: string
+          id: string
+          installment_id: string | null
+          kind: string
+          payment_id: string | null
+          promise_id: string | null
+          ref_date: string
+          skip_reason: string | null
+          status: string
+        }
+        Insert: {
+          amount?: number | null
+          body?: string | null
+          channel?: string
+          created_at?: string
+          created_by?: string | null
+          customer_id: string
+          group_id: string
+          id?: string
+          installment_id?: string | null
+          kind: string
+          payment_id?: string | null
+          promise_id?: string | null
+          ref_date: string
+          skip_reason?: string | null
+          status: string
+        }
+        Update: {
+          amount?: number | null
+          body?: string | null
+          channel?: string
+          created_at?: string
+          created_by?: string | null
+          customer_id?: string
+          group_id?: string
+          id?: string
+          installment_id?: string | null
+          kind?: string
+          payment_id?: string | null
+          promise_id?: string | null
+          ref_date?: string
+          skip_reason?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customer_messages_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "v_customers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_installment_id_fkey"
+            columns: ["installment_id"]
+            isOneToOne: false
+            referencedRelation: "installments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_installment_id_fkey"
+            columns: ["installment_id"]
+            isOneToOne: false
+            referencedRelation: "v_installments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "v_payments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_promise_id_fkey"
+            columns: ["promise_id"]
+            isOneToOne: false
+            referencedRelation: "payment_promises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "customer_messages_promise_id_fkey"
+            columns: ["promise_id"]
+            isOneToOne: false
+            referencedRelation: "v_promises"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       customer_notes: {
         Row: {
           body: string
@@ -329,6 +447,9 @@ export type Database = {
           last_contact_at: string | null
           latitude: number | null
           longitude: number | null
+          messages_opt_out: boolean
+          messages_opt_out_at: string | null
+          messages_opt_out_reason: string | null
           neighborhood: string | null
           notes: string | null
           phone: string | null
@@ -347,6 +468,9 @@ export type Database = {
           last_contact_at?: string | null
           latitude?: number | null
           longitude?: number | null
+          messages_opt_out?: boolean
+          messages_opt_out_at?: string | null
+          messages_opt_out_reason?: string | null
           neighborhood?: string | null
           notes?: string | null
           phone?: string | null
@@ -365,6 +489,9 @@ export type Database = {
           last_contact_at?: string | null
           latitude?: number | null
           longitude?: number | null
+          messages_opt_out?: boolean
+          messages_opt_out_at?: string | null
+          messages_opt_out_reason?: string | null
           neighborhood?: string | null
           notes?: string | null
           phone?: string | null
@@ -1914,6 +2041,7 @@ export type Database = {
         Args: { p_email: string; p_ip: string; p_success: boolean }
         Returns: undefined
       }
+      message_kind_label: { Args: { k: string }; Returns: string }
       method_label: {
         Args: { m: Database["public"]["Enums"]["payment_method"] }
         Returns: string
@@ -1935,6 +2063,21 @@ export type Database = {
           p_new_date: string
           p_notes: string
           p_reason: string
+        }
+        Returns: string
+      }
+      record_customer_message: {
+        Args: {
+          p_amount: number
+          p_body: string
+          p_customer_id: string
+          p_installments: Json
+          p_kind: string
+          p_payment_id: string
+          p_promise_id: string
+          p_ref_date: string
+          p_skip_reason: string
+          p_status: string
         }
         Returns: string
       }
@@ -1996,6 +2139,10 @@ export type Database = {
           p_to?: string
         }
         Returns: Json
+      }
+      set_customer_messages_opt_out: {
+        Args: { p_customer_id: string; p_opt_out: boolean; p_reason: string }
+        Returns: undefined
       }
       set_visit_customer_status: {
         Args: {

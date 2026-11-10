@@ -1,5 +1,5 @@
 import {
-  LayoutDashboard, Users, ShoppingBag, HandCoins, CalendarDays, MapPin, Package, Wallet, BarChart3, History, Settings,
+  LayoutDashboard, MessageCircle, Users, ShoppingBag, HandCoins, CalendarDays, MapPin, Package, Wallet, BarChart3, History, Settings,
   type LucideIcon,
 } from "lucide-react";
 
@@ -9,6 +9,7 @@ export type NavItem = { href: string; label: string; icon: LucideIcon; ownerOnly
 export const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard, group: "operacao" },
   { href: "/cobrancas", label: "Cobranças", icon: HandCoins, group: "operacao" },
+  { href: "/mensagens", label: "Mensagens", icon: MessageCircle, group: "operacao" },
   { href: "/clientes", label: "Clientes", icon: Users, group: "operacao" },
   { href: "/vendas", label: "Vendas", icon: ShoppingBag, group: "operacao" },
   { href: "/agenda", label: "Agenda", icon: CalendarDays, group: "operacao" },

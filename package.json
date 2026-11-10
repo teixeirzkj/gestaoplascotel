@@ -17,7 +17,10 @@
     "prebuild": "node scripts/check-urls.mjs",
     "check:urls": "node scripts/check-urls.mjs",
     "test:security": "node tests/security/anon-probe.mjs prod && node tests/security/employee-probe.mjs && node tests/security/web-attacks.mjs",
-    "test:security:prod": "node tests/security/anon-probe.mjs prod"
+    "test:security:prod": "node tests/security/anon-probe.mjs prod",
+    "test:unit": "tsx --test tests/unit/*.test.ts",
+    "test:messages": "node tests/e2e/messages.spec.mjs",
+    "test:layout": "node tests/e2e/layout.spec.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.3",

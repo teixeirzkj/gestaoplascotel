@@ -80,7 +80,7 @@ export default async function SaleDetailPage({ params }: { params: Promise<{ id:
         </FadeIn>
       )}
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <div className="min-w-0 space-y-5">
           {/* Cliente e dados gerais */}
           <FadeIn>

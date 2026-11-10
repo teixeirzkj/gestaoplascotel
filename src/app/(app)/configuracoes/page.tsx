@@ -9,11 +9,14 @@ import { getEnvStatus, getSettings, getUsers } from "@/features/settings/queries
 import { BillingForm, CompanyForm, ProfileForm } from "@/features/settings/components/settings-forms";
 import { UsersSection } from "@/features/settings/components/users-section";
 import { BackupInfo, FutureIntegrations } from "@/features/settings/components/system-info";
+import { getMessageSettings } from "@/features/messages/queries";
+import { MessageSettingsForm } from "@/features/messages/components/settings-form";
 
 export const metadata: Metadata = { title: "Configurações" };
 
 const TABS = [
   { value: "geral", label: "Empresa e cobrança" },
+  { value: "mensagens", label: "Mensagens" },
   { value: "usuarios", label: "Usuários" },
   { value: "perfil", label: "Meu perfil" },
   { value: "sistema", label: "Backup e integrações" },
@@ -38,13 +41,16 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
   if (tab === "geral") {
     const settings = await getSettings().catch(() => null);
     content = settings ? (
-      <div className="grid gap-4 xl:grid-cols-2 xl:items-start">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:items-start">
         <CompanyForm initial={settings.company} updatedAt={settings.updatedAt.company} />
         <BillingForm initial={settings.billing} updatedAt={settings.updatedAt.billing} />
       </div>
     ) : (
       <LoadError what="as configurações" />
     );
+  } else if (tab === "mensagens") {
+    const res = await getMessageSettings().catch(() => null);
+    content = res ? <MessageSettingsForm initial={res.settings} company={res.company} /> : <LoadError what="as configurações de mensagens" />;
   } else if (tab === "usuarios") {
     const res = await getUsers().catch(() => null);
     content = res ? <UsersSection users={res.users} authAvailable={res.authAvailable} /> : <LoadError what="os usuários" />;
@@ -56,7 +62,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
     );
   } else {
     content = (
-      <div className="grid gap-4 xl:grid-cols-2 xl:items-start">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:items-start">
         <BackupInfo env={getEnvStatus()} />
         <FutureIntegrations />
       </div>

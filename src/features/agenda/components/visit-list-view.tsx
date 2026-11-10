@@ -57,7 +57,7 @@ export function VisitListView({
   const groups = groupBy(upcoming, (v) => v.visitDate);
 
   return (
-    <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+    <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
       <div className="min-w-0 space-y-6">
         {late.length > 0 && (
           <section aria-labelledby="late-title">
@@ -70,7 +70,7 @@ export function VisitListView({
                 <p className="text-[12.5px] text-fg-muted">Registre os atendimentos e marque como realizada, ou cancele.</p>
               </div>
             </div>
-            <MotionList className="grid gap-2.5 sm:grid-cols-2">
+            <MotionList className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               {late.map((v) => (
                 <MotionItem key={v.id}>
                   <div className="mb-1.5 tabular text-[12px] font-medium text-warning">
@@ -98,7 +98,7 @@ export function VisitListView({
               <div className="mb-3">
                 <DateRail date={g.key} today={today} />
               </div>
-              <MotionList className="grid gap-2.5 sm:grid-cols-2">
+              <MotionList className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {g.items.map((v) => (
                   <MotionItem key={v.id}>
                     <VisitCard visit={v} showStatus={false} />

@@ -17,7 +17,7 @@ const KIND_META: Record<string, { icon: LucideIcon; cls: string; tone: "brand" |
 
 export function NotesTab({ customerId, registrationNotes, notes }: { customerId: string; registrationNotes: string | null; notes: CustomerNoteItem[] }) {
   return (
-    <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] xl:items-start">
+    <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] xl:items-start">
       <div className="space-y-4 xl:sticky xl:top-20">
         <Card>
           <CardHeader title="Nova anotação" description="Fica registrada com seu nome, data e hora." icon={<MessageSquareText className="h-4 w-4" />} />

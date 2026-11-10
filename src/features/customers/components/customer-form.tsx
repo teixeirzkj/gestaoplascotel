@@ -85,7 +85,7 @@ export function CustomerForm({
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
       <Card>
         <CardHeader title="Identificação e contato" icon={<UserRound className="h-4 w-4" />} />
-        <CardBody className="grid gap-4 sm:grid-cols-2">
+        <CardBody className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label="Nome completo" required error={errors.full_name?.message} className="sm:col-span-2">
             <Input autoComplete="name" autoCapitalize="words" placeholder="Ex.: Maria da Silva Santos" {...register("full_name")} />
           </Field>
@@ -148,7 +148,7 @@ export function CustomerForm({
 
       <Card>
         <CardHeader title="Endereço" description="Ajuda nas visitas e cobranças presenciais." icon={<MapPin className="h-4 w-4" />} />
-        <CardBody className="grid gap-4 sm:grid-cols-2">
+        <CardBody className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <Controller
               control={control}

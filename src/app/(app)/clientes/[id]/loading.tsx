@@ -32,7 +32,7 @@ export default function Loading() {
         ))}
       </div>
       <Skeleton className="h-[74px] rounded-2xl" />
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px]">
         <div className="space-y-4">
           <div className="flex gap-2 overflow-hidden border-b border-line pb-2">
             {Array.from({ length: 5 }).map((_, i) => (

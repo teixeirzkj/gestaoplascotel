@@ -19,6 +19,7 @@ import { CustomerDetailsCard } from "@/features/customers/components/customer-de
 import { CustomerTabContent, TabSkeleton, loadTabData } from "@/features/customers/components/customer-tab-content";
 import { countCustomerNotes, getCustomer, getOpenInstallments } from "@/features/customers/queries";
 import { isUuid, parseTab, type CustomerTab } from "@/features/customers/schemas";
+import { MessagesOptOutCard } from "@/features/messages/components/opt-out-card";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -162,7 +163,7 @@ export default async function CustomerPage({ params, searchParams }: Props) {
         <MiniDate label="Último contato" value={formatDate(lastContactDay)} hint={relative(lastContactDay)} />
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start xl:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-start xl:grid-cols-[minmax(0,1fr)_340px]">
         <div className="min-w-0 space-y-4">
           <Tabs items={tabs} value={tab} />
           <SwapContent id={tab}>
@@ -173,6 +174,9 @@ export default async function CustomerPage({ params, searchParams }: Props) {
         </div>
         <aside className="space-y-3 lg:sticky lg:top-20">
           <CustomerDetailsCard customer={customer} />
+          <Suspense fallback={null}>
+            <MessagesOptOutCard customerId={id} />
+          </Suspense>
           {!archived && (
             <div className="flex justify-center lg:justify-start">
               <ArchiveCustomerButton customerId={id} customerName={customer.full_name} archived={false} balance={balance} />

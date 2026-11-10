@@ -49,7 +49,7 @@ export function PaymentEditor({
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field label="Forma de pagamento" hint="Como o cliente costuma pagar.">
           <Select value={draft.paymentMethod} onChange={(e) => update({ paymentMethod: e.target.value as PaymentMethod | "" })}>
             <option value="">Não informada</option>
@@ -110,7 +110,7 @@ export function PaymentEditor({
           </div>
         ) : (
           <div className="space-y-4">
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <Field label="Entrada" hint="Opcional. Deixe em branco se não houver." error={errors.down}>
                 <MoneyInput value={draft.down} onValueChange={(down) => update({ down, customRows: null })} />
               </Field>

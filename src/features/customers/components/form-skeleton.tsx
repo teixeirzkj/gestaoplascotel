@@ -12,7 +12,7 @@ export function FormSkeleton() {
       {[3, 4, 1].map((fields, i) => (
         <div key={i} className="space-y-4 rounded-2xl border border-line bg-card p-4 sm:p-5">
           <Skeleton className="h-5 w-40" />
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {Array.from({ length: fields }).map((_, j) => (
               <div key={j} className={j === 0 && fields !== 4 ? "space-y-1.5 sm:col-span-2" : "space-y-1.5"}>
                 <Skeleton className="h-3.5 w-24" />

@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { CalendarClock, CalendarPlus, HandCoins, ShoppingBag, UserPlus, type LucideIcon } from "lucide-react";
+import { CalendarClock, CalendarPlus, HandCoins, ShoppingBag, UserPlus, type LucideIcon, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type QuickAction = { href: string; label: string; short: string; icon: LucideIcon; ownerOnly?: boolean; primary?: boolean };
 
 const ACTIONS: QuickAction[] = [
   { href: "/cobrancas?aba=hoje", label: "Registrar pagamento", short: "Receber", icon: HandCoins, primary: true },
+  { href: "/mensagens", label: "Mensagens do dia", short: "Mensagens", icon: MessageCircle },
   { href: "/clientes/novo", label: "Cadastrar cliente", short: "Novo cliente", icon: UserPlus, ownerOnly: true },
   { href: "/vendas/nova", label: "Registrar venda", short: "Nova venda", icon: ShoppingBag, ownerOnly: true },
   { href: "/cobrancas?aba=atrasadas", label: "Adiar cobrança", short: "Adiar", icon: CalendarClock },

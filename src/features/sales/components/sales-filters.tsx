@@ -11,7 +11,7 @@ export function SalesFilters({ cities, today }: { cities: CityOption[]; today: s
 
   return (
     <div className="mb-4 space-y-2">
-      <div className="grid gap-2 md:grid-cols-[minmax(0,1fr)_170px_190px_170px]">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-[minmax(0,1fr)_170px_190px_170px]">
         <SearchInput placeholder="Buscar por cliente ou #código" />
         <div className="grid grid-cols-2 gap-2 md:contents">
           <FilterSelect

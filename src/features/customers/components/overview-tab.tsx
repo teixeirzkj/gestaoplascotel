@@ -35,7 +35,7 @@ export function OverviewTab({
   const base = `/clientes/${customerId}`;
   const labels = new Map(openInstallments.map((i) => [i.id, `${installmentLabel(i.number)} · venda #${i.sale_code}`]));
   return (
-    <div className="grid gap-4 xl:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
       <Card className="xl:col-span-2">
         <CardHeader
           title="Próximas parcelas"

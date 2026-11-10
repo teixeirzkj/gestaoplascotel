@@ -199,7 +199,7 @@ export function VisitCalendar({ month, visits, today }: { month: string; visits:
           {dayVisits.length === 0 ? (
             <p className="rounded-2xl border border-dashed border-line px-4 py-6 text-center text-[13px] text-fg-subtle">Nenhuma visita neste dia.</p>
           ) : (
-            <MotionList className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
+            <MotionList className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
               {dayVisits.map((v) => (
                 <MotionItem key={v.id}>
                   <VisitCard visit={v} />

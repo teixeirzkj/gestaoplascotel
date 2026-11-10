@@ -12,7 +12,7 @@ export default function Loading() {
         <Skeleton className="h-4 w-64 max-w-full" />
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
         <div className="space-y-5">
           <div className="rounded-2xl border border-line bg-card">
             <div className="flex items-center gap-3 p-4 sm:p-5">

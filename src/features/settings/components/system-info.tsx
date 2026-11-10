@@ -89,7 +89,7 @@ export function FutureIntegrations() {
   return (
     <Card>
       <CardHeader title="Integrações futuras" description="Recursos preparados, ainda desativados." icon={<Plug className="h-4 w-4" />} />
-      <CardBody className="grid gap-3 sm:grid-cols-2">
+      <CardBody className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {items.map(({ icon: Icon, title, text }) => (
           <div key={title} className="rounded-xl border border-line bg-bg-elevated p-3.5">
             <div className="flex items-center justify-between gap-2">

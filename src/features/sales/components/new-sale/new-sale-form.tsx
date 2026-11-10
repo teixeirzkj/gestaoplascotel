@@ -203,7 +203,7 @@ export function NewSaleForm({ initialCustomer, hasCustomers, products, cities, t
           onChange={(customer) => update({ customer, cityId: customer?.city_id ?? "" })}
         />
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field label="Cidade da venda" hint="Padrão: cidade do cliente.">
           <Select value={draft.cityId} onChange={(e) => update({ cityId: e.target.value })}>
             <option value="">Sem cidade</option>
@@ -237,7 +237,7 @@ export function NewSaleForm({ initialCustomer, hasCustomers, products, cities, t
         onAdd={addItem}
         onRemove={removeItem}
       />
-      <div className="grid gap-3 rounded-2xl border border-line bg-card p-3.5 sm:grid-cols-[1fr_auto] sm:items-end sm:p-4">
+      <div className="grid grid-cols-1 gap-3 rounded-2xl border border-line bg-card p-3.5 sm:grid-cols-[1fr_auto] sm:items-end sm:p-4">
         <Field label="Desconto geral" error={e2.discount} className="sm:max-w-[240px]">
           <MoneyInput value={draft.discount} onValueChange={(discount) => update({ discount, customRows: null })} />
         </Field>

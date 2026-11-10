@@ -74,7 +74,7 @@ export default async function VisitDetailPage({ params }: { params: Promise<{ id
       />
 
       <Card className="mb-5 overflow-hidden">
-        <div className="grid gap-4 p-4 sm:p-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-6">
+        <div className="grid grid-cols-1 gap-4 p-4 sm:p-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-6">
           <div className="space-y-2.5">
             <div className="flex flex-wrap items-center gap-2">
               <StatusBadge status={visit.status} map={VISIT_STATUS} />
@@ -158,7 +158,7 @@ export default async function VisitDetailPage({ params }: { params: Promise<{ id
           />
         </Card>
       ) : (
-        <MotionList className="grid gap-3 xl:grid-cols-2">
+        <MotionList className="grid grid-cols-1 gap-3 xl:grid-cols-2">
           {customers.map((c, i) => (
             <MotionItem key={c.id}>
               <VisitCustomerCard customer={c} position={i + 1} cityName={visit.cityName} cityState={visit.cityState} visitStatus={visit.status} />

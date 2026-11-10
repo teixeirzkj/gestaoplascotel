@@ -15,7 +15,7 @@ export default function Loading() {
         <Skeleton className="h-11 flex-1 rounded-xl sm:w-[260px] sm:flex-none" />
         <Skeleton className="h-11 w-11 rounded-xl" />
       </div>
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
         <div className="space-y-5">
           <Skeleton className="h-[148px] rounded-2xl" />
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

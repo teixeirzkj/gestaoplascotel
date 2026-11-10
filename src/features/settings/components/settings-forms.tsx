@@ -65,7 +65,7 @@ export function CompanyForm({ initial, updatedAt }: { initial: CompanySettings; 
       <CardHeader title="Empresa" description="Dados exibidos em recibos e mensagens de cobrança." icon={<Building2 className="h-4 w-4" />} />
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Nome da empresa" required error={errors.name?.message} className="sm:col-span-2">
               <Input autoComplete="organization" {...register("name")} />
             </Field>
@@ -140,7 +140,7 @@ export function BillingForm({ initial, updatedAt }: { initial: BillingSettings; 
       <CardHeader title="Cobrança" description="Padrões para novas vendas e para os avisos do sistema." icon={<CalendarClock className="h-4 w-4" />} />
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <Field label="Intervalo entre parcelas" required error={errors.default_interval_days?.message} hint="Em dias (ex.: 30 = mensal)">
               <Input {...numberProps} min={1} max={365} {...register("default_interval_days")} />
             </Field>
@@ -189,7 +189,7 @@ export function ProfileForm({ name, email, role, createdAt }: { name: string; em
       <CardHeader title="Meu perfil" description="Como seu nome aparece no sistema e no histórico." icon={<UserRound className="h-4 w-4" />} />
       <CardBody>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Nome completo" required error={errors.full_name?.message} className="sm:col-span-2">
               <Input autoComplete="name" {...register("full_name")} />
             </Field>

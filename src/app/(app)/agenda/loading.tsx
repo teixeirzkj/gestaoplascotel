@@ -14,7 +14,7 @@ export default function Loading() {
         <Skeleton className="h-11 w-full max-w-[420px] rounded-xl" />
         <Skeleton className="h-4 w-72 max-w-full" />
       </div>
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
         <div className="space-y-6">
           {Array.from({ length: 2 }).map((_, g) => (
             <div key={g}>
@@ -25,7 +25,7 @@ export default function Loading() {
                   <Skeleton className="h-3 w-28" />
                 </div>
               </div>
-              <div className="grid gap-2.5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 <Skeleton className="h-[120px] rounded-2xl" />
                 <Skeleton className="h-[120px] rounded-2xl" />
               </div>
